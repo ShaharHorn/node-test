@@ -1,6 +1,6 @@
 const express = require('express')
-const request = require('request')
 const router = express.Router()
+const request = require('request')
 // const Bike = require('../models/BikeModel')
 
 router.get('/bikes', function(req,res) {
