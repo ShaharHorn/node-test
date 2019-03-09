@@ -1,14 +1,12 @@
 const express = require('express')
-const app = express()
-const port = 8000
 const request = require('request');
+const api = require('./server/routes/api')
+const port = 8000
 
-request('http://api.citybik.es/v2/networks', { json: true }, (err, res, body) => {
-  if (err) { return console.log(err); }
-  console.log(body.networks[0].company);
-  console.log(body.explanation);
-});
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/bikeDB', { useNewUrlParser: true })
+const app = express()
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use('/', api)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
